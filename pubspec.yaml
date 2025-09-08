@@ -1,10 +1,10 @@
 name: simport_design_system
-description: "A new Flutter package project."
+description: "simport design system"
 version: 0.0.1
 homepage:
 
 environment:
-  sdk: ^3.10.0-75.1.beta
+  sdk: ^3.8.1
   flutter: ">=1.17.0"
 
 dependencies:
