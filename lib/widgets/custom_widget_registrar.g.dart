@@ -18,6 +18,7 @@ class CustomWidgetRegistrar extends _CustomWidgetRegistrar {
   }) {
     registry ??= JsonWidgetRegistry.instance;
     return CustomWidgetRegistrar()
+      ..withButtonJsonWidget()
       ..withChartWidget()
       ..withCircularChart()
       ..withCircularGraph()
@@ -27,6 +28,7 @@ class CustomWidgetRegistrar extends _CustomWidgetRegistrar {
       ..withDefaultDrawer()
       ..withIconWidget()
       ..withMapBoxWidget()
+      ..withSkeletonLoading()
       ..withSyncLinearGraph()
       ..withTitleWidget()
       ..register(registry);
@@ -44,6 +46,14 @@ class CustomWidgetRegistrar extends _CustomWidgetRegistrar {
     for (var s in _schemas.entries) {
       schemaCache.addSchema(s.key, s.value);
     }
+  }
+
+  void withButtonJsonWidget() {
+    _builders[ButtonJsonWidgetBuilder.kType] = const JsonWidgetBuilderContainer(
+      builder: ButtonJsonWidgetBuilder.fromDynamic,
+      schemaId: ButtonJsonWidgetSchema.id,
+    );
+    _schemas[ButtonJsonWidgetSchema.id] = ButtonJsonWidgetSchema.schema;
   }
 
   void withChartWidget() {
@@ -116,6 +126,14 @@ class CustomWidgetRegistrar extends _CustomWidgetRegistrar {
       schemaId: MapBoxWidgetSchema.id,
     );
     _schemas[MapBoxWidgetSchema.id] = MapBoxWidgetSchema.schema;
+  }
+
+  void withSkeletonLoading() {
+    _builders[SkeletonLoadingBuilder.kType] = const JsonWidgetBuilderContainer(
+      builder: SkeletonLoadingBuilder.fromDynamic,
+      schemaId: SkeletonLoadingSchema.id,
+    );
+    _schemas[SkeletonLoadingSchema.id] = SkeletonLoadingSchema.schema;
   }
 
   void withSyncLinearGraph() {
